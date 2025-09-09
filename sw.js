@@ -15,23 +15,19 @@ const urlsToCache = [
     '/manifest.json'
 ];
 
-// Instalação do Service Worker: Cacheia os recursos essenciais
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('Service Worker: Cache aberto');
                 return cache.addAll(urlsToCache);
             })
             .catch(error => {
                 console.error('Service Worker: Falha ao abrir cache', error);
             })
     );
-    // Força o Service Worker a ativar imediatamente
     self.skipWaiting();
 });
 
-// Ativação do Service Worker: Limpa caches antigos
 self.addEventListener('activate', event => {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
@@ -39,36 +35,29 @@ self.addEventListener('activate', event => {
             return Promise.all(
                 cacheNames.map(cacheName => {
                     if (!cacheWhitelist.includes(cacheName)) {
-                        console.log('Service Worker: Removendo cache antigo', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
             );
         })
         .then(() => {
-            // Força o Service Worker a assumir o controle imediato das páginas
             return self.clients.claim();
         })
     );
 });
 
-// Intercepta requisições: Usa cache, recorre à rede se necessário
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                // Retorna do cache se encontrado
                 if (response) {
                     return response;
                 }
-                // Caso contrário, faz a requisição à rede
                 return fetch(event.request)
                     .then(networkResponse => {
-                        // Verifica se a resposta é válida
                         if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
                             return networkResponse;
                         }
-                        // Clona a resposta para armazenar no cache
                         const responseToCache = networkResponse.clone();
                         caches.open(CACHE_NAME)
                             .then(cache => {
@@ -78,7 +67,6 @@ self.addEventListener('fetch', event => {
                     })
                     .catch(error => {
                         console.error('Service Worker: Falha na requisição', error);
-                        // Opcional: Retornar uma página offline personalizada
                         return caches.match('/index.html');
                     });
             })
