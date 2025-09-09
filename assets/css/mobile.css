@@ -1,6 +1,5 @@
 @media (max-width: 768px) {
     :root {
-        /* Adjusted spacing for mobile */
         --spacing-xs: 0.25rem;
         --spacing-sm: 0.5rem;
         --spacing-base: 0.75rem;
@@ -9,7 +8,6 @@
         --spacing-2xl: 2rem;
         --spacing-3xl: 2.5rem;
         
-        /* Adjusted font sizes for mobile */
         --font-size-xs: 0.7rem;
         --font-size-sm: 0.8rem;
         --font-size-base: 0.9rem;
@@ -44,7 +42,6 @@
         font-size: var(--font-size-lg);
     }
     
-    /* Hide desktop nav links on mobile */
     .nav-links {
         display: none;
         position: fixed;
@@ -120,12 +117,10 @@
         background: var(--primary-blue);
     }
     
-    /* Prevent body scroll when menu is open */
     body.menu-open {
         overflow: hidden;
     }
     
-    /* Menu overlay */
     .nav-links::before {
         content: '';
         position: absolute;
@@ -149,7 +144,6 @@
         gap: var(--spacing-xl);
     }
     
-    /* Mobile Hero Logo */
     .hero-logo-container {
         min-height: 280px;
     }
@@ -429,7 +423,6 @@
         transform: scale(1.05);
     }
     
-    /* Pulse animation for mobile */
     @keyframes mobilePulse {
         0% {
             box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
@@ -448,7 +441,6 @@
 }
 
 @media (max-width: 768px) {
-    /* Increased touch targets */
     .btn,
     .contact-method,
     .nav-links a {
@@ -456,11 +448,10 @@
         min-width: 44px;
     }
     
-    /* Improved form inputs for mobile */
     .form-group input,
     .form-group select,
     .form-group textarea {
-        font-size: 16px; /* Prevents zoom on iOS */
+        font-size: 16px;
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -474,19 +465,16 @@
         padding-right: 2.5rem;
     }
     
-    /* Improved hover states for touch */
     .service-card:active,
     .btn:active,
     .contact-method:active {
         transform: scale(0.98);
     }
     
-    /* Scroll improvements */
     html {
-        scroll-padding-top: 80px; /* Account for fixed header */
+        scroll-padding-top: 80px; 
     }
     
-    /* Hide scroll bars on mobile while keeping functionality */
     .coverage-map iframe {
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -496,7 +484,6 @@
         display: none;
     }
     
-    /* Larger focus indicators for mobile */
     .btn:focus,
     .contact-method:focus,
     .form-group input:focus,
@@ -506,7 +493,6 @@
         outline-offset: 2px;
     }
     
-    /* Better contrast for mobile screens */
     .hero-text .highlight::after {
         height: 4px;
     }
@@ -516,7 +502,6 @@
         width: 40px;
     }
     
-    /* Improved readability */
     .service-card p,
     .coverage-list li,
     .footer-info p {
@@ -525,14 +510,12 @@
 }
 
 @media (max-width: 768px) {
-    /* Reduce motion for better performance on mobile */
     .service-card,
     .btn,
     .contact-method {
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     
-    /* Optimize animations for mobile */
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -544,7 +527,6 @@
         }
     }
     
-    /* Reduce shadow complexity on mobile */
     .service-card {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
@@ -553,7 +535,6 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
     
-    /* Simplify gradients on mobile for better performance */
     .btn-primary {
         background: var(--primary-blue);
     }
@@ -738,7 +719,6 @@
 }
 
 @media (max-width: 320px) {
-    /* Para telas muito pequenas, podemos empilhar ou reduzir ainda mais */
     .logo {
         flex-direction: column;
         gap: 4px;
