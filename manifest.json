@@ -1,0 +1,65 @@
+{
+  "name": "Everton Motoboy - Entregas Rápidas Curitiba",
+  "short_name": "Everton Motoboy",
+  "description": "Entregas rápidas e confiáveis em Curitiba e região metropolitana",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FF6B35",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "assets/images/icon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon/android-chrome-512x512.png",
+      "sizes": "512x512", 
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "delivery", "transport"],
+  "shortcuts": [
+    {
+      "name": "Ver Serviços",
+      "short_name": "Serviços",
+      "description": "Conheça nossos tipos de entrega",
+      "url": "/#servicos",
+      "icons": [
+        {
+          "src": "assets/images/icon/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Áreas Atendidas",
+      "short_name": "Áreas",
+      "description": "Veja se atendemos sua região",
+      "url": "/#areas",
+      "icons": [
+        {
+          "src": "assets/images/icon/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Contato Direto",
+      "short_name": "Contato",
+      "description": "WhatsApp para orçamento rápido",
+      "url": "/#contato",
+      "icons": [
+        {
+          "src": "assets/images/icon/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
