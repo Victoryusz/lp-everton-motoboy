@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Functionality
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const body = document.body;
@@ -59,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Smooth Scroll for Anchor Links
     const anchors = document.querySelectorAll('a[href^="#"]');
     anchors.forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -76,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Header Scroll Effect
     const header = document.querySelector('.header');
     if (header) {
         let lastScrollTop = 0;
@@ -88,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 10));
     }
 
-    // Intersection Observer for Animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -107,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Form Submission Handling
     const form = document.querySelector('.form');
     if (form) {
         form.addEventListener('submit', function(e) {
@@ -148,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Phone Input Formatting
     document.querySelectorAll('input[type="tel"]').forEach(input => {
         input.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
@@ -161,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Lazy Loading Images
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -174,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('img[loading="lazy"]').forEach(img => imageObserver.observe(img));
     }
 
-    // Preload Critical Resources
     ['assets/images/Logo.webp'].forEach(resource => {
         const link = document.createElement('link');
         link.rel = 'preload';
@@ -183,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(link);
     });
 
-    // Accessibility: Skip Link
     const skipLink = document.createElement('a');
     skipLink.href = '#main-content';
     skipLink.textContent = 'Pular para o conteúdo principal';
@@ -204,14 +195,12 @@ document.addEventListener('DOMContentLoaded', function() {
     skipLink.addEventListener('blur', () => skipLink.style.top = '-40px');
     document.body.insertBefore(skipLink, document.body.firstChild);
 
-    // Form Focus States
     document.querySelectorAll('input, select, textarea, button').forEach(element => {
         element.addEventListener('focus', () => element.closest('.form-group')?.classList.add('focused'));
         element.addEventListener('blur', () => element.closest('.form-group')?.classList.remove('focused'));
     });
 });
 
-// Service Worker Registration
 if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
     window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js')
@@ -220,7 +209,6 @@ if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
     });
 }
 
-// Utility Functions
 function showNotification(message, type = 'info') {
     const existingNotifications = document.querySelectorAll('.notification');
     existingNotifications.forEach(notification => notification.remove());
@@ -287,7 +275,6 @@ function getBrazilTime() {
     return new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 }
 
-// Error Handling
 window.addEventListener('error', function(e) {
     console.error('🚨 JavaScript Error:', e.error);
     if (window.location.hostname !== 'localhost') {
