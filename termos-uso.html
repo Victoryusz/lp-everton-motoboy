@@ -188,6 +188,79 @@
             </div>
         </div>
     </footer>
+
+    <!-- Banner de Cookies -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-container">
+            <div class="cookie-content">
+                <div class="cookie-title">🍪 Utilizamos Cookies</div>
+                <div class="cookie-text">
+                    Usamos cookies para melhorar sua experiência, analisar nosso tráfego e personalizar conteúdo. 
+                    Ao continuar navegando, você concorda com nossa 
+                    <a href="/politicas-privacidade.html" class="cookie-link">Política de Privacidade</a>.
+                </div>
+            </div>
+            <div class="cookie-actions">
+                <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">✓ Aceitar</button>
+                <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">✗ Recusar</button>
+                <button class="cookie-btn cookie-btn-settings" onclick="showCookieSettings()">⚙️ Configurar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Configurações -->
+    <div id="cookieModal" class="cookie-modal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h3 class="cookie-modal-title">Configurações de Cookies</h3>
+                <button class="cookie-modal-close" onclick="hideCookieSettings()">&times;</button>
+            </div>
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <span class="cookie-category-title">Cookies Necessários</span>
+                    <div class="cookie-toggle active disabled"></div>
+                </div>
+                <div class="cookie-category-description">
+                    Essenciais para o funcionamento do site. Não podem ser desabilitados.
+                    Incluem cookies de sessão e segurança.
+                </div>
+            </div>
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <span class="cookie-category-title">Cookies Funcionais</span>
+                    <div class="cookie-toggle" data-category="functional" onclick="toggleCookie(this)"></div>
+                </div>
+                <div class="cookie-category-description">
+                    Permitem funcionalidades avançadas como lembrar preferências e configurações.
+                </div>
+            </div>
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <span class="cookie-category-title">Cookies de Análise</span>
+                    <div class="cookie-toggle" data-category="analytics" onclick="toggleCookie(this)"></div>
+                </div>
+                <div class="cookie-category-description">
+                    Nos ajudam a entender como os visitantes interagem com o site através do Google Analytics.
+                </div>
+            </div>
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <span class="cookie-category-title">Cookies de Marketing</span>
+                    <div class="cookie-toggle" data-category="marketing" onclick="toggleCookie(this)"></div>
+                </div>
+                <div class="cookie-category-description">
+                    Utilizados para mostrar anúncios relevantes e medir a eficácia das campanhas.
+                </div>
+            </div>
+            <div class="cookie-modal-actions">
+                <button class="cookie-btn cookie-btn-decline" onclick="saveCustomSettings(false)">Salvar e Recusar</button>
+                <button class="cookie-btn cookie-btn-accept" onclick="saveCustomSettings(true)">Salvar Configurações</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indicador de Status -->
+    <div id="cookieStatus" class="cookie-status"></div>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
