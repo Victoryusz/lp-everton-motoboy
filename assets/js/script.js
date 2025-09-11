@@ -175,8 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(link);
     });
 
-    // Código do Skip Link foi removido completamente desta seção
-
     document.querySelectorAll('input, select, textarea, button').forEach(element => {
         element.addEventListener('focus', () => element.closest('.form-group')?.classList.add('focused'));
         element.addEventListener('blur', () => element.closest('.form-group')?.classList.remove('focused'));
@@ -185,7 +183,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            console.log('Service Worker registrado com sucesso:', registration.scope);
+        }).catch(function(error) {
+            console.log('Falha ao registrar Service Worker:', error);
+        });
     });
 }
 
