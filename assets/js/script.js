@@ -175,25 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(link);
     });
 
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.textContent = 'Pular para o conteúdo principal';
-    skipLink.className = 'skip-link';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--primary-blue);
-        color: white;
-        padding: 8px;
-        border-radius: 4px;
-        text-decoration: none;
-        z-index: 10001;
-        transition: top 0.3s ease;
-    `;
-    skipLink.addEventListener('focus', () => skipLink.style.top = '6px');
-    skipLink.addEventListener('blur', () => skipLink.style.top = '-40px');
-    document.body.insertBefore(skipLink, document.body.firstChild);
+    // Código do Skip Link foi removido completamente desta seção
 
     document.querySelectorAll('input, select, textarea, button').forEach(element => {
         element.addEventListener('focus', () => element.closest('.form-group')?.classList.add('focused'));
