@@ -101,13 +101,10 @@
   "dir": "ltr",
   "protocol_handlers": [
     {
-      "protocol": "web+everton-motoboy",
+      "protocol": "web+evertonmotoboy",
       "url": "/handle?type=%s"
     }
   ],
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
   "screenshots": [
     {
       "src": "/assets/images/screenshots/desktop-screenshot.png",
