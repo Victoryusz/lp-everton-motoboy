@@ -7,7 +7,7 @@
 const FORMULARIO_CONFIG = {
   SCRIPT_URL:
     "https://script.google.com/macros/s/AKfycbyCMf_p7CafIVVerVbRsvFo9-WcZf2euGGOou5rTnYqbqwKi4qJ0B-9BnKTywEuBjmM_Q/exec",
-  TIMEOUT: 15000, // 15 segundos de timeout
+  TIMEOUT: 30000, // 30 segundos de timeout
 };
 
 /**
