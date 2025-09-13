@@ -256,15 +256,18 @@
 
   .coverage-list {
     margin-bottom: var(--spacing-lg);
+    text-align: center;
   }
 
   .coverage-list li {
     font-size: var(--font-size-sm);
     margin-bottom: var(--spacing-sm);
+    justify-content: center;
   }
 
   .coverage-features {
     gap: var(--spacing-sm);
+    align-items: center;
   }
 
   .feature {
@@ -333,42 +336,14 @@
   }
 
   .contact-content {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+    max-width: 100%;
+    padding: 0 var(--spacing-base);
   }
 
-  .contact-info {
-    order: 2;
-  }
-
-  .contact-form {
-    order: 1;
-  }
-
-  .contact-info h3,
   .contact-form h3 {
     font-size: var(--font-size-xl);
     margin-bottom: var(--spacing-lg);
     text-align: center;
-  }
-
-  .contact-methods {
-    gap: var(--spacing-sm);
-  }
-
-  .contact-method {
-    padding: var(--spacing-base);
-    font-size: var(--font-size-sm);
-    border-radius: var(--radius-lg);
-  }
-
-  .contact-method:hover {
-    transform: translateX(0);
-    transform: scale(1.02);
-  }
-
-  .contact-method span {
-    font-weight: 500;
   }
 
   .form {
@@ -497,7 +472,6 @@
 /* Acessibilidade e interações mobile */
 @media (max-width: 768px) {
   .btn,
-  .contact-method,
   .nav-links a {
     min-height: 44px;
     min-width: 44px;
@@ -522,10 +496,6 @@
 
   .service-card:active,
   .btn:active,
-  .contact-method:active {
-    transform: scale(0.98);
-  }
-
   html {
     scroll-padding-top: 80px;
   }
@@ -540,7 +510,6 @@
   }
 
   .btn:focus,
-  .contact-method:focus,
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus {
@@ -568,10 +537,6 @@
 @media (max-width: 768px) {
   .service-card,
   .btn,
-  .contact-method {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -720,10 +685,6 @@
 
   .service-card,
   .contact-form,
-  .contact-info {
-    margin: 0;
-  }
-
   .hero-buttons .btn {
     max-width: 100%;
     font-size: var(--font-size-sm);
