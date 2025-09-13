@@ -159,9 +159,7 @@ if ("serviceWorker" in navigator && window.location.protocol === "https:") {
   });
 }
 
-// Funções utilitárias (movidas para utils.js)
-// As funções showNotification, debounce, formatPhone, isMobile, getBrazilTime
-// e o gerenciamento de erros global foram movidas para assets/js/utils.js
+// Funções utilitárias estão em assets/js/utils.js
 
 // ===== SISTEMA DE COOKIES LGPD =====
 class CookieManager {
@@ -274,7 +272,7 @@ class CookieManager {
     if (consent.marketing) {
       this.loadMarketingScripts();
     }
-    console.log("🍪 Configurações de cookies aplicadas:", consent);
+    // Configurações de cookies aplicadas
   }
   loadGoogleAnalytics() {
     if (typeof gtag === "undefined") {
@@ -296,7 +294,7 @@ class CookieManager {
   }
 
   loadMarketingScripts() {
-    console.log("📊 Scripts de marketing carregados");
+    // Scripts de marketing carregados
   }
 
   removeAnalyticsScripts() {

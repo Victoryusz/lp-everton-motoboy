@@ -6,15 +6,15 @@
 // ⚠️ IMPORTANTE: Substitua pela sua URL do Google Apps Script
 const FORMULARIO_CONFIG = {
   SCRIPT_URL:
-    "https://script.google.com/macros/s/AKfycbyCMf_p7CafIVVerVbRsvFo9-WcZf2euGGOou5rTnYqbqwKi4qJ0B-9BnKTywEuBjmM_Q/exec",
-  TIMEOUT: 30000, // 30 segundos de timeout
+    "https://script.google.com/macros/s/AKfycbx3MTkYiZitPzHO_zT7mLdqK0LD1hV5dbPGDUtX4rYLPWApIDXaP27s9JUtBp_sD2gkYg/exec",
+  TIMEOUT: 15000, // 15 segundos de timeout
 };
 
 /**
  * 🚀 Inicialização quando a página carregar
  */
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("📋 Sistema de formulário carregado");
+  // Sistema de formulário carregado
 
   // Elementos do DOM
   const form = document.getElementById("formContato");
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Log para debug (removido em produção)
-    console.log("📋 Dados coletados:", dados);
+    // Dados coletados para envio
 
     return dados;
   }
@@ -323,5 +323,5 @@ Mensagem: ${dados.mensagem || "Sem mensagem adicional"}`;
     });
   }
 
-  console.log("✅ Formulário de contato configurado com sucesso!");
+  // Formulário de contato configurado com sucesso
 });
