@@ -47,7 +47,7 @@
       "name": "Ver Serviços",
       "short_name": "Serviços",
       "description": "Conheça nossos tipos de entrega",
-      "url": "/#servicos",
+      "url": "/servicos",
       "icons": [
         {
           "src": "/assets/images/icon/service-icon-96x96.png",
@@ -60,7 +60,7 @@
       "name": "Áreas Atendidas",
       "short_name": "Áreas",
       "description": "Veja se atendemos sua região",
-      "url": "/#areas",
+      "url": "/areas",
       "icons": [
         {
           "src": "/assets/images/icon/map-icon-96x96.png",
@@ -72,24 +72,11 @@
     {
       "name": "Contato Direto",
       "short_name": "Contato",
-      "description": "WhatsApp para orçamento rápido",
-      "url": "https://wa.me/5541996137339?text=Olá!%20Gostaria%20de%20solicitar%20um%20motoboy",
+      "description": "Entre em contato conosco",
+      "url": "/contato",
       "icons": [
         {
           "src": "/assets/images/icon/whatsapp-icon-96x96.png",
-          "sizes": "96x96",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Orçamento Rápido",
-      "short_name": "Orçamento",
-      "description": "Solicite um orçamento rapidamente",
-      "url": "/#contato",
-      "icons": [
-        {
-          "src": "/assets/images/icon/quote-icon-96x96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
