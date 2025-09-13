@@ -6,7 +6,7 @@
 // ⚠️ IMPORTANTE: Substitua pela sua URL do Google Apps Script
 const FORMULARIO_CONFIG = {
   SCRIPT_URL:
-    "https://script.google.com/macros/s/AKfycbw8UtT3ihtJEGPoHAi1r8XDaEMUaO_3-tCcYtpVun7Vcbj03YNGuBBlnyzwIsSNEWNf/exec",
+    "https://script.google.com/macros/s/AKfycbyCMf_p7CafIVVerVbRsvFo9-WcZf2euGGOou5rTnYqbqwKi4qJ0B-9BnKTywEuBjmM_Q/exec",
   TIMEOUT: 15000, // 15 segundos de timeout
 };
 
