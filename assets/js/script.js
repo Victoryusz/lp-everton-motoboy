@@ -86,17 +86,29 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastScrollTop = 0;
     window.addEventListener(
       "scroll",
-      Utils.debounce(function () {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        header.style.background =
-          scrollTop > 50
-            ? "rgba(255, 255, 255, 0.98)"
-            : "rgba(255, 255, 255, 0.95)";
-        header.style.boxShadow =
-          scrollTop > 50 ? "0 2px 20px rgba(0, 0, 0, 0.1)" : "none";
-        lastScrollTop = scrollTop;
-      }, 10)
+      typeof Utils !== "undefined" && Utils.debounce
+        ? Utils.debounce(function () {
+            const scrollTop =
+              window.pageYOffset || document.documentElement.scrollTop;
+            header.style.background =
+              scrollTop > 50
+                ? "rgba(255, 255, 255, 0.98)"
+                : "rgba(255, 255, 255, 0.95)";
+            header.style.boxShadow =
+              scrollTop > 50 ? "0 2px 20px rgba(0, 0, 0, 0.1)" : "none";
+            lastScrollTop = scrollTop;
+          }, 10)
+        : function () {
+            const scrollTop =
+              window.pageYOffset || document.documentElement.scrollTop;
+            header.style.background =
+              scrollTop > 50
+                ? "rgba(255, 255, 255, 0.98)"
+                : "rgba(255, 255, 255, 0.95)";
+            header.style.boxShadow =
+              scrollTop > 50 ? "0 2px 20px rgba(0, 0, 0, 0.1)" : "none";
+            lastScrollTop = scrollTop;
+          }
     );
   }
 
@@ -139,7 +151,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Inicializar componentes comuns
-  Utils.initializeCommonComponents();
+  if (typeof Utils !== "undefined" && Utils.initializeCommonComponents) {
+    Utils.initializeCommonComponents();
+  }
 });
 
 // Service Worker
@@ -330,7 +344,11 @@ class CookieManager {
   }
 
   showStatus(message, type) {
-    Utils.showNotification(message, type);
+    if (typeof Utils !== "undefined" && Utils.showNotification) {
+      Utils.showNotification(message, type);
+    } else {
+      console.log(`${type.toUpperCase()}: ${message}`);
+    }
   }
 
   clearConsent() {
@@ -342,7 +360,9 @@ class CookieManager {
 }
 
 // Inicializar gerenciamento de erros global
-Utils.setupGlobalErrorHandling();
+if (typeof Utils !== "undefined" && Utils.setupGlobalErrorHandling) {
+  Utils.setupGlobalErrorHandling();
+}
 
 // Instância global do gerenciador de cookies
 const cookieManager = new CookieManager();
@@ -433,9 +453,13 @@ class PartnersCarousel {
     // Redimensionar janela
     window.addEventListener(
       "resize",
-      Utils.debounce(() => {
-        this.optimizeForMobile();
-      }, 250)
+      typeof Utils !== "undefined" && Utils.debounce
+        ? Utils.debounce(() => {
+            this.optimizeForMobile();
+          }, 250)
+        : () => {
+            this.optimizeForMobile();
+          }
     );
   }
 

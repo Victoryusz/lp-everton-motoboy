@@ -11,11 +11,6 @@
       type="image/x-icon"
     />
     <link
-      rel="shortcut icon"
-      href="assets/images/icon/favicon.ico"
-      type="image/x-icon"
-    />
-    <link
       rel="icon"
       type="image/png"
       sizes="16x16"
@@ -45,12 +40,50 @@
     />
 
     <link rel="manifest" href="manifest.json" />
+    <link
+      rel="preload"
+      href="assets/images/Logo.webp"
+      as="image"
+      type="image/webp"
+    />
 
     <meta
       name="description"
       content="Serviço de motoboy profissional em Curitiba. Oferecemos serviços de entrega expressa e coleta e entrega de documentos, pacotes, e atendimento especializado para bancos e cartórios. Contamos com agilidade e a confiança que sua empresa precisa, atendendo toda a região metropolitana com rapidez e segurança."
     />
     <meta name="robots" content="index, follow" />
+    <meta name="author" content="Everton Motoboy" />
+    <meta
+      name="keywords"
+      content="motoboy, entregas, Curitiba, documentos, bancos, cartórios, expressa, região metropolitana"
+    />
+    <meta
+      property="og:title"
+      content="Everton Motoboy | Entregas Rápidas em Curitiba"
+    />
+    <meta
+      property="og:description"
+      content="Serviço de motoboy profissional em Curitiba. Entregas expressas, documentos, bancos e cartórios com agilidade e segurança."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://everton-motoboy.com.br" />
+    <meta
+      property="og:image"
+      content="https://everton-motoboy.com.br/assets/images/Logo.webp"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Everton Motoboy | Entregas Rápidas em Curitiba"
+    />
+    <meta
+      name="twitter:description"
+      content="Serviço de motoboy profissional em Curitiba. Entregas expressas, documentos, bancos e cartórios com agilidade e segurança."
+    />
+    <meta
+      name="twitter:image"
+      content="https://everton-motoboy.com.br/assets/images/Logo.webp"
+    />
 
     <script type="application/ld+json">
       {
@@ -136,8 +169,20 @@
       }
     </script>
 
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/mobile.css" />
+    <link
+      rel="preload"
+      href="assets/css/main.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="assets/css/main.css" /></noscript>
+    <link
+      rel="preload"
+      href="assets/css/mobile.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="assets/css/mobile.css" /></noscript>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -149,6 +194,9 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
   </head>
   <body>
@@ -170,6 +218,7 @@
               src="assets/images/Logo.webp"
               alt="Everton Motoboy"
               class="logo-img"
+              loading="eager"
             />
             <span class="logo-text">Everton Motoboy</span>
           </a>
@@ -233,6 +282,7 @@
                 src="assets/images/Logo.webp"
                 alt="Everton Motoboy - Logo Profissional"
                 class="hero-logo"
+                loading="eager"
               />
               <div class="hero-logo-bg"></div>
             </div>
@@ -328,6 +378,8 @@
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa da localização do Everton Motoboy em Curitiba"
+              aria-label="Mapa interativo mostrando a localização do Everton Motoboy em Curitiba"
             ></iframe>
           </div>
         </div>
@@ -439,6 +491,7 @@
                 src="assets/images/Logo.webp"
                 alt="Everton Motoboy"
                 class="logo-img"
+                loading="lazy"
               />
               <span class="logo-text">Everton Motoboy</span>
             </div>

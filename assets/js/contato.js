@@ -251,7 +251,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Usar sistema de notificações global
-    Utils.showNotification(mensagem, "error");
+    if (typeof Utils !== "undefined" && Utils.showNotification) {
+      Utils.showNotification(mensagem, "error");
+    } else {
+      console.error("Erro:", mensagem);
+    }
     console.warn("⚠️ Erro exibido:", mensagem);
   }
 
@@ -283,7 +287,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Usar sistema de notificações global
-    Utils.showNotification(mensagem, "error");
+    if (typeof Utils !== "undefined" && Utils.showNotification) {
+      Utils.showNotification(mensagem, "error");
+    } else {
+      console.error("Erro:", mensagem);
+    }
     console.warn("⚠️ Erro exibido com fallback:", mensagem);
   }
 
@@ -319,7 +327,20 @@ Mensagem: ${dados.mensagem || "Sem mensagem adicional"}`;
   const inputTelefone = form?.querySelector('input[name="telefone"]');
   if (inputTelefone) {
     inputTelefone.addEventListener("input", function (e) {
-      e.target.value = Utils.formatPhone(e.target.value);
+      if (typeof Utils !== "undefined" && Utils.formatPhone) {
+        e.target.value = Utils.formatPhone(e.target.value);
+      } else {
+        // Formatação básica de telefone
+        let value = e.target.value.replace(/\D/g, "");
+        if (value.length >= 11) {
+          value = value.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+        } else if (value.length >= 7) {
+          value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+        } else if (value.length >= 3) {
+          value = value.replace(/(\d{2})(\d{0,5})/, "($1) $2");
+        }
+        e.target.value = value;
+      }
     });
   }
 
