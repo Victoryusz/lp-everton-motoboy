@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastScrollTop = 0;
     window.addEventListener(
       "scroll",
-      debounce(function () {
+      Utils.debounce(function () {
         const scrollTop =
           window.pageYOffset || document.documentElement.scrollTop;
         header.style.background =
@@ -138,26 +138,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .forEach((img) => imageObserver.observe(img));
   }
 
-  // Preload recursos
-  ["assets/images/Logo.webp"].forEach((resource) => {
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.href = resource;
-    link.as = "image";
-    document.head.appendChild(link);
-  });
-
-  // Estilização ao focar nos inputs
-  document
-    .querySelectorAll("input, select, textarea, button")
-    .forEach((element) => {
-      element.addEventListener("focus", () =>
-        element.closest(".form-group")?.classList.add("focused")
-      );
-      element.addEventListener("blur", () =>
-        element.closest(".form-group")?.classList.remove("focused")
-      );
-    });
+  // Inicializar componentes comuns
+  Utils.initializeCommonComponents();
 });
 
 // Service Worker
@@ -177,102 +159,9 @@ if ("serviceWorker" in navigator && window.location.protocol === "https:") {
   });
 }
 
-// Funções utilitárias
-function showNotification(message, type = "info") {
-  const existingNotifications = document.querySelectorAll(".notification");
-  existingNotifications.forEach((notification) => notification.remove());
-
-  const notification = document.createElement("div");
-  notification.className = `notification notification-${type}`;
-  notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas ${
-              type === "success"
-                ? "fa-check-circle"
-                : type === "error"
-                ? "fa-exclamation-circle"
-                : "fa-info-circle"
-            }"></i>
-            <span>${message}</span>
-            <button class="notification-close">×</button>
-        </div>
-    `;
-  notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${
-          type === "success"
-            ? "#10b981"
-            : type === "error"
-            ? "#ef4444"
-            : "#3b82f6"
-        };
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 0.75rem;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        z-index: 10000;
-        transform: translateX(400px);
-        transition: transform 0.3s ease;
-        max-width: 350px;
-        font-family: var(--font-primary);
-    `;
-  document.body.appendChild(notification);
-
-  setTimeout(() => (notification.style.transform = "translateX(0)"), 100);
-  const closeBtn = notification.querySelector(".notification-close");
-  closeBtn.addEventListener("click", () => {
-    notification.style.transform = "translateX(400px)";
-    setTimeout(() => notification.remove(), 300);
-  });
-  setTimeout(() => {
-    if (notification.parentNode) {
-      notification.style.transform = "translateX(400px)";
-      setTimeout(() => notification.remove(), 300);
-    }
-  }, 5000);
-}
-
-function debounce(func, wait) {
-  let timeout;
-  return function () {
-    const context = this,
-      args = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(context, args), wait);
-  };
-}
-
-function formatPhone(phone) {
-  const cleaned = phone.replace(/\D/g, "");
-  return cleaned.length === 11
-    ? `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`
-    : phone;
-}
-
-function isMobile() {
-  return window.innerWidth <= 768;
-}
-
-function getBrazilTime() {
-  return new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
-}
-
-window.addEventListener("error", function (e) {
-  console.error("🚨 JavaScript Error:", e.error);
-  if (window.location.hostname !== "localhost") {
-    showNotification(
-      "Ops! Algo deu errado. Tente recarregar a página.",
-      "error"
-    );
-  }
-});
-
-window.addEventListener("unhandledrejection", function (e) {
-  console.error("🚨 Unhandled Promise Rejection:", e.reason);
-  e.preventDefault();
-});
+// Funções utilitárias (movidas para utils.js)
+// As funções showNotification, debounce, formatPhone, isMobile, getBrazilTime
+// e o gerenciamento de erros global foram movidas para assets/js/utils.js
 
 // ===== SISTEMA DE COOKIES LGPD =====
 class CookieManager {
@@ -443,12 +332,7 @@ class CookieManager {
   }
 
   showStatus(message, type) {
-    const status = document.getElementById("cookieStatus");
-    status.textContent = message;
-    status.className = `cookie-status show ${type}`;
-    setTimeout(() => {
-      status.classList.remove("show");
-    }, 3000);
+    Utils.showNotification(message, type);
   }
 
   clearConsent() {
@@ -458,6 +342,9 @@ class CookieManager {
     this.showStatus("Configurações limpas!", "declined");
   }
 }
+
+// Inicializar gerenciamento de erros global
+Utils.setupGlobalErrorHandling();
 
 // Instância global do gerenciador de cookies
 const cookieManager = new CookieManager();
@@ -517,4 +404,126 @@ document.addEventListener("click", function (e) {
   if (e.target === modal) {
     hideCookieSettings();
   }
+});
+
+// ===== CARROSSEL DE PARCEIROS =====
+class PartnersCarousel {
+  constructor() {
+    this.carousel = document.querySelector(".partners-carousel");
+    this.track = document.querySelector(".partners-track");
+    this.partnerItems = document.querySelectorAll(".partner-item");
+    this.animationSpeed = 30; // segundos
+    this.init();
+  }
+
+  init() {
+    if (!this.carousel || !this.track) return;
+
+    // Inicializar parceiros primeiro
+    if (typeof initializePartners === "function") {
+      initializePartners();
+      // Reiniciar animação após carregar parceiros
+      setTimeout(() => this.restartAnimation(), 100);
+    }
+
+    this.setupEventListeners();
+    this.optimizeForMobile();
+    this.startAnimation();
+  }
+
+  setupEventListeners() {
+    // Redimensionar janela
+    window.addEventListener(
+      "resize",
+      Utils.debounce(() => {
+        this.optimizeForMobile();
+      }, 250)
+    );
+  }
+
+  optimizeForMobile() {
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+
+    if (isSmallMobile) {
+      this.animationSpeed = 20;
+    } else if (isMobile) {
+      this.animationSpeed = 25;
+    } else {
+      this.animationSpeed = 30;
+    }
+
+    this.updateAnimationSpeed();
+  }
+
+  startAnimation() {
+    // Aguardar um pouco para garantir que os elementos estejam carregados
+    setTimeout(() => {
+      // Verificar se há parceiros carregados
+      const partnerItems = this.track.querySelectorAll(".partner-item");
+      if (partnerItems.length > 0) {
+        this.track.style.animation = `scrollFromRight ${this.animationSpeed}s linear infinite`;
+      } else {
+        // Tentar novamente em 500ms se não houver parceiros
+        setTimeout(() => this.startAnimation(), 500);
+      }
+    }, 200);
+  }
+
+  // Métodos de pausa removidos para animação infinita
+
+  updateAnimationSpeed() {
+    this.track.style.animation = `scrollFromRight ${this.animationSpeed}s linear infinite`;
+  }
+
+  // Método para reiniciar a animação após carregar parceiros
+  restartAnimation() {
+    // Parar animação atual
+    this.track.style.animation = "none";
+    // Forçar reflow
+    this.track.offsetHeight;
+    // Reiniciar animação
+    this.track.style.animation = `scrollFromRight ${this.animationSpeed}s linear infinite`;
+  }
+
+  // Método para adicionar novos parceiros dinamicamente
+  addPartner(name, url, imageSrc) {
+    const partnerItem = document.createElement("div");
+    partnerItem.className = "partner-item";
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener";
+
+    const img = document.createElement("img");
+    img.src = imageSrc;
+    img.alt = name;
+
+    link.appendChild(img);
+    partnerItem.appendChild(link);
+
+    // Adicionar no início e no final para manter o loop
+    this.track.appendChild(partnerItem);
+    this.track.insertBefore(partnerItem.cloneNode(true), this.track.firstChild);
+
+    // Atualizar lista de itens
+    this.partnerItems = document.querySelectorAll(".partner-item");
+  }
+
+  // Método para remover parceiros
+  removePartner(index) {
+    if (this.partnerItems[index]) {
+      this.partnerItems[index].remove();
+      this.partnerItems = document.querySelectorAll(".partner-item");
+    }
+  }
+}
+
+// Inicializar carrossel quando o DOM estiver carregado
+document.addEventListener("DOMContentLoaded", function () {
+  // Aguardar um pouco para garantir que todos os elementos estejam renderizados
+  setTimeout(() => {
+    new PartnersCarousel();
+  }, 100);
 });
