@@ -11,16 +11,34 @@
   "lang": "pt-BR",
   "icons": [
     {
-      "src": "assets/images/icon/android-chrome-192x192.png",
+      "src": "https://everton-motoboy.com.br/assets/images/icon/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "assets/images/icon/android-chrome-512x512.png",
+      "src": "https://everton-motoboy.com.br/assets/images/icon/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "https://everton-motoboy.com.br/assets/images/icon/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://everton-motoboy.com.br/assets/images/icon/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://everton-motoboy.com.br/assets/images/icon/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "categories": ["business", "delivery", "transport"],
@@ -29,19 +47,81 @@
       "name": "Ver Serviços",
       "short_name": "Serviços",
       "description": "Conheça nossos tipos de entrega",
-      "url": "/#servicos"
+      "url": "/#servicos",
+      "icons": [
+        {
+          "src": "/assets/images/icon/service-icon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Áreas Atendidas",
       "short_name": "Áreas",
       "description": "Veja se atendemos sua região",
-      "url": "/#areas"
+      "url": "/#areas",
+      "icons": [
+        {
+          "src": "/assets/images/icon/map-icon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Contato Direto",
       "short_name": "Contato",
       "description": "WhatsApp para orçamento rápido",
-      "url": "/#contato"
+      "url": "https://wa.me/5541996137339?text=Olá!%20Gostaria%20de%20solicitar%20um%20motoboy",
+      "icons": [
+        {
+          "src": "/assets/images/icon/whatsapp-icon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Orçamento Rápido",
+      "short_name": "Orçamento",
+      "description": "Solicite um orçamento rapidamente",
+      "url": "/#contato",
+      "icons": [
+        {
+          "src": "/assets/images/icon/quote-icon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "dir": "ltr",
+  "protocol_handlers": [
+    {
+      "protocol": "web+everton-motoboy",
+      "url": "/handle?type=%s"
+    }
+  ],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "screenshots": [
+    {
+      "src": "/assets/images/screenshots/desktop-screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Tela inicial no desktop"
+    },
+    {
+      "src": "/assets/images/screenshots/mobile-screenshot.png",
+      "sizes": "360x640",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tela inicial no celular"
     }
   ]
 }
