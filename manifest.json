@@ -18,7 +18,7 @@
     },
     {
       "src": "assets/images/icon/android-chrome-512x512.png",
-      "sizes": "512x512", 
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
@@ -29,37 +29,19 @@
       "name": "Ver Serviços",
       "short_name": "Serviços",
       "description": "Conheça nossos tipos de entrega",
-      "url": "/#servicos",
-      "icons": [
-        {
-          "src": "assets/images/icon/android-chrome-192x192.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/#servicos"
     },
     {
       "name": "Áreas Atendidas",
       "short_name": "Áreas",
       "description": "Veja se atendemos sua região",
-      "url": "/#areas",
-      "icons": [
-        {
-          "src": "assets/images/icon/android-chrome-192x192.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/#areas"
     },
     {
       "name": "Contato Direto",
       "short_name": "Contato",
       "description": "WhatsApp para orçamento rápido",
-      "url": "/#contato",
-      "icons": [
-        {
-          "src": "assets/images/icon/android-chrome-192x192.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/#contato"
     }
   ]
 }
