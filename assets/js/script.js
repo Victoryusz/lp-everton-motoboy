@@ -549,3 +549,182 @@ document.addEventListener("DOMContentLoaded", function () {
     new PartnersCarousel();
   }, 100);
 });
+
+/**
+ * 🎨 FORMULÁRIO ORGÂNICO - MICRO-INTERAÇÕES
+ * Funcionalidades para o novo design do formulário
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("formContato");
+  const progress = document.getElementById("formProgress");
+  const inputs = form?.querySelectorAll("input, select, textarea");
+  
+  if (!form || !progress || !inputs) return;
+
+  // Animar progresso do formulário
+  function updateProgress() {
+    const filled = Array.from(inputs).filter(input => {
+      if (input.type === "select-one") {
+        return input.value.trim() !== "";
+      }
+      return input.value.trim() !== "";
+    }).length;
+    
+    const percentage = (filled / inputs.length) * 100;
+    progress.style.width = percentage + "%";
+  }
+
+  // Adicionar listeners para progresso
+  inputs.forEach(input => {
+    input.addEventListener("input", updateProgress);
+    input.addEventListener("focus", updateProgress);
+    input.addEventListener("change", updateProgress);
+  });
+
+  // Validação visual em tempo real
+  function validateField(field) {
+    const formGroup = field.closest(".form-group");
+    if (!formGroup) return;
+
+    // Remover classes anteriores
+    formGroup.classList.remove("valid", "invalid");
+
+    if (field.hasAttribute("required") && !field.value.trim()) {
+      formGroup.classList.add("invalid");
+      return false;
+    }
+
+    // Validação específica por tipo
+    if (field.type === "tel") {
+      const phoneNumbers = field.value.replace(/\D/g, "");
+      if (phoneNumbers.length < 10) {
+        formGroup.classList.add("invalid");
+        return false;
+      }
+    }
+
+    if (field.value.trim()) {
+      formGroup.classList.add("valid");
+    }
+
+    return true;
+  }
+
+  // Adicionar validação em tempo real
+  inputs.forEach(input => {
+    input.addEventListener("blur", () => validateField(input));
+    input.addEventListener("input", () => {
+      // Remover estado de erro enquanto digita
+      const formGroup = input.closest(".form-group");
+      if (formGroup) {
+        formGroup.classList.remove("invalid");
+      }
+    });
+  });
+
+  // Efeito de foco suave
+  inputs.forEach(input => {
+    input.addEventListener("focus", function() {
+      const formGroup = this.closest(".form-group");
+      if (formGroup) {
+        formGroup.style.transform = "scale(1.02)";
+        formGroup.style.transition = "transform 0.2s ease";
+      }
+    });
+
+    input.addEventListener("blur", function() {
+      const formGroup = this.closest(".form-group");
+      if (formGroup) {
+        formGroup.style.transform = "scale(1)";
+      }
+    });
+  });
+
+  // Animação do botão de envio
+  const submitBtn = document.getElementById("btnEnviar");
+  if (submitBtn) {
+    submitBtn.addEventListener("mouseenter", function() {
+      this.style.transform = "translateY(-3px) scale(1.05)";
+    });
+
+    submitBtn.addEventListener("mouseleave", function() {
+      this.style.transform = "translateY(0) scale(1)";
+    });
+
+    submitBtn.addEventListener("mousedown", function() {
+      this.style.transform = "translateY(-1px) scale(0.98)";
+    });
+
+    submitBtn.addEventListener("mouseup", function() {
+      this.style.transform = "translateY(-3px) scale(1.05)";
+    });
+  }
+
+  // Efeito de digitação no textarea
+  const textarea = document.getElementById("mensagem");
+  if (textarea) {
+    textarea.addEventListener("input", function() {
+      const formGroup = this.closest(".form-group");
+      if (formGroup) {
+        // Adicionar efeito de "digitando"
+        formGroup.style.boxShadow = "0 0 20px rgba(220, 38, 38, 0.1)";
+        setTimeout(() => {
+          formGroup.style.boxShadow = "none";
+        }, 200);
+      }
+    });
+  }
+
+  // Animação de entrada dos campos
+  const formGroups = form.querySelectorAll(".form-group");
+  formGroups.forEach((group, index) => {
+    group.style.animationDelay = `${index * 0.1}s`;
+  });
+
+  // Efeito de hover nos labels
+  const labels = form.querySelectorAll("label");
+  labels.forEach(label => {
+    label.addEventListener("mouseenter", function() {
+      this.style.color = "var(--primary-blue)";
+      this.style.transform = "scale(1.05)";
+    });
+
+    label.addEventListener("mouseleave", function() {
+      const input = document.getElementById(this.getAttribute("for"));
+      if (input && !input.value.trim()) {
+        this.style.color = "var(--text-gray)";
+        this.style.transform = "scale(1)";
+      }
+    });
+  });
+
+  // Feedback visual para validação do formulário
+  form.addEventListener("submit", function(e) {
+    let isValid = true;
+    
+    inputs.forEach(input => {
+      if (!validateField(input)) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      e.preventDefault();
+      
+      // Animação de "shake" no formulário
+      form.style.animation = "shake 0.5s ease-in-out";
+      setTimeout(() => {
+        form.style.animation = "none";
+      }, 500);
+
+      // Focar no primeiro campo inválido
+      const firstInvalid = form.querySelector(".form-group.invalid input, .form-group.invalid select, .form-group.invalid textarea");
+      if (firstInvalid) {
+        firstInvalid.focus();
+      }
+    }
+  });
+
+  // Inicializar progresso
+  updateProgress();
+});

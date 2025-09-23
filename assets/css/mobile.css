@@ -340,32 +340,75 @@
     padding: 0 var(--spacing-base);
   }
 
+  /* Formulário orgânico mobile */
+  .contact-form {
+    margin: 0 1rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+  
+  /* Ajustar elementos decorativos no mobile */
+  .contact-form::before,
+  .contact-form::after {
+    display: none; /* Simplificar no mobile */
+  }
+
   .contact-form h3 {
     font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-base);
     text-align: center;
   }
 
+  .form-subtitle {
+    font-size: var(--font-size-xs);
+    margin-bottom: var(--spacing-xl);
+  }
+
   .form {
-    gap: var(--spacing-base);
+    gap: var(--spacing-lg);
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
   }
 
   .form-group input,
   .form-group select,
   .form-group textarea {
-    padding: var(--spacing-base);
-    font-size: var(--font-size-base);
-    border-radius: var(--radius-lg);
+    padding: 1rem 0.75rem 0.5rem;
+    border-radius: 12px;
+    font-size: 16px; /* Evita zoom no iOS */
+  }
+
+  .form-group label {
+    top: 0.875rem;
+    left: 0.75rem;
+    font-size: var(--font-size-sm);
+  }
+
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label,
+  .form-group select:focus + label,
+  .form-group select:not([value=""]) + label,
+  .form-group textarea:focus + label,
+  .form-group textarea:not(:placeholder-shown) + label {
+    top: 0.375rem;
+    font-size: var(--font-size-xs);
   }
 
   .form-group textarea {
     min-height: 80px;
   }
 
-  .btn-full {
-    padding: var(--spacing-base) var(--spacing-xl);
-    font-size: var(--font-size-base);
-    font-weight: 600;
+  .btn-organic {
+    padding: 0.875rem 1.5rem;
+    border-radius: 16px;
+    font-size: var(--font-size-sm);
+  }
+
+  .message {
+    padding: var(--spacing-base);
+    font-size: var(--font-size-xs);
   }
 }
 

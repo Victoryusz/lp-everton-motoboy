@@ -390,80 +390,75 @@
         <h2 class="section-title">Solicite um Orçamento</h2>
         <div class="contact-content">
           <div class="contact-form">
+            <div class="form-progress" id="formProgress"></div>
+            <h3>Vamos conversar sobre sua entrega</h3>
+            <p class="form-subtitle">Preencha os dados abaixo e entraremos em contato em até 2 horas</p>
+            
             <form id="formContato">
               <div class="form-group">
                 <input
                   type="text"
                   name="nome"
-                  placeholder="Seu nome"
+                  id="nome"
+                  placeholder=" "
                   required
                 />
+                <label for="nome">Seu nome completo</label>
               </div>
+              
               <div class="form-group">
                 <input
                   type="tel"
                   name="telefone"
-                  placeholder="(41) 9 9999-9999"
+                  id="telefone"
+                  placeholder=" "
                   required
                 />
+                <label for="telefone">WhatsApp ou telefone</label>
               </div>
+              
               <div class="form-group">
-                <select name="servico" required>
-                  <option value="">Selecione o serviço</option>
+                <select name="servico" id="servico" required>
+                  <option value=""> </option>
                   <option value="coleta-entrega">Coleta e Entrega</option>
                   <option value="banco">Serviços Bancários</option>
                   <option value="cartorio">Cartório</option>
                   <option value="outros">Outros</option>
                 </select>
+                <label for="servico">Tipo de serviço</label>
               </div>
+              
               <div class="form-group">
                 <textarea
                   name="mensagem"
-                  placeholder="Observações importantes sobre a entrega..."
+                  id="mensagem"
+                  placeholder=" "
                   rows="4"
                 ></textarea>
+                <label for="mensagem">Detalhes do seu projeto</label>
               </div>
-              <button
-                type="submit"
-                class="btn btn-primary btn-full"
-                id="btnEnviar"
-              >
+              
+              <button type="submit" class="btn btn-organic btn-full" id="btnEnviar">
                 <i class="fas fa-paper-plane"></i>
                 <span>Enviar Mensagem</span>
               </button>
             </form>
-            <div
-              id="mensagemSucesso"
-              style="
-                display: none;
-                background: #d4edda;
-                color: #155724;
-                padding: 15px;
-                border-radius: 5px;
-                margin-top: 15px;
-                border: 1px solid #c3e6cb;
-              "
-            >
+            
+            <!-- Mensagens de feedback -->
+            <div id="mensagemSucesso" class="message message-success" style="display: none;">
               <i class="fas fa-check-circle"></i>
-              <strong>Mensagem enviada com sucesso!</strong><br />
-              Entraremos em contato em breve.
+              <div>
+                <strong>Mensagem enviada com sucesso!</strong>
+                <p>Entraremos em contato em breve.</p>
+              </div>
             </div>
 
-            <div
-              id="mensagemErro"
-              style="
-                display: none;
-                background: #f8d7da;
-                color: #721c24;
-                padding: 15px;
-                border-radius: 5px;
-                margin-top: 15px;
-                border: 1px solid #f5c6cb;
-              "
-            >
+            <div id="mensagemErro" class="message message-error" style="display: none;">
               <i class="fas fa-exclamation-triangle"></i>
-              <strong>Erro ao enviar!</strong><br />
-              Tente novamente ou entre em contato pelo WhatsApp.
+              <div>
+                <strong>Erro ao enviar!</strong>
+                <p>Tente novamente ou entre em contato pelo WhatsApp.</p>
+              </div>
             </div>
           </div>
         </div>

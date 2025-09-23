@@ -584,48 +584,307 @@ body {
   margin: 0 auto;
 }
 
+/* Formulário com design orgânico */
+.contact-form {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(248, 250, 252, 0.95) 100%);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+/* Elementos decorativos orgânicos */
+.contact-form::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 30% 20%, 
+    rgba(220, 38, 38, 0.05) 0%, 
+    transparent 50%
+  );
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none; /* Permite cliques através do elemento */
+  z-index: 1;
+}
+
+.contact-form::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -30%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    circle at 70% 80%, 
+    rgba(16, 185, 129, 0.03) 0%, 
+    transparent 50%
+  );
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite reverse;
+  pointer-events: none; /* Permite cliques através do elemento */
+  z-index: 1;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(10px, -10px) rotate(1deg); }
+  66% { transform: translate(-5px, 5px) rotate(-1deg); }
+}
+
 .contact-form h3 {
   font-size: var(--font-size-2xl);
   font-weight: 600;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-base);
   color: var(--text-dark);
   text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.form-subtitle {
+  text-align: center;
+  color: var(--text-gray);
+  margin-bottom: var(--spacing-2xl);
+  font-size: var(--font-size-sm);
+  position: relative;
+  z-index: 2;
+}
+
+/* Progresso do formulário */
+.form-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--primary-blue) 0%, 
+    var(--accent-green) 100%);
+  border-radius: 0 0 8px 8px;
+  transition: width 0.3s ease;
+  z-index: 3;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-xl);
+  position: relative;
+  z-index: 10; /* Garantir que o formulário esteja acima dos elementos decorativos */
 }
 
+/* Container do campo com design orgânico */
 .form-group {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp 0.6s ease forwards;
 }
 
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Label flutuante animado */
+.form-group label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: var(--text-gray);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 6; /* Garantir que os labels estejam acessíveis */
+  background: linear-gradient(45deg, transparent 0%, white 20%, white 80%, transparent 100%);
+  padding: 0 0.5rem;
+}
+
+/* Input com design orgânico */
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: var(--spacing-base);
-  border: 2px solid var(--border-gray);
-  border-radius: var(--radius-base);
+  width: 100%;
+  padding: 1.25rem 1rem 0.75rem;
+  border: 2px solid rgba(226, 232, 240, 0.8);
+  border-radius: 16px;
   font-family: var(--font-primary);
   font-size: var(--font-size-base);
-  transition: var(--transition);
-  background: var(--bg-white);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 5; /* Garantir que os inputs estejam acessíveis */
 }
 
+/* Estados de foco com animação orgânica */
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary-blue);
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 0 0 4px rgba(220, 38, 38, 0.1),
+    0 8px 25px rgba(220, 38, 38, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Label flutuante quando campo tem foco ou valor */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group select:focus + label,
+.form-group select:not([value=""]) + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  top: 0.5rem;
+  font-size: var(--font-size-sm);
+  color: var(--primary-blue);
+  font-weight: 600;
+  transform: scale(0.9);
+}
+
+/* Efeito de validação visual */
+.form-group.valid input,
+.form-group.valid select,
+.form-group.valid textarea {
+  border-color: var(--accent-green);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.form-group.invalid input,
+.form-group.invalid select,
+.form-group.invalid textarea {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
 
 .form-group textarea {
   resize: vertical;
   min-height: 100px;
+}
+
+/* Botão com design orgânico */
+.btn-organic {
+  position: relative;
+  background: linear-gradient(135deg, 
+    var(--primary-blue) 0%, 
+    var(--secondary-blue) 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 1rem 2rem;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 25px rgba(220, 38, 38, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Efeito de ondas no hover */
+.btn-organic::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+}
+
+.btn-organic:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-organic:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 15px 35px rgba(220, 38, 38, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.btn-organic:active {
+  transform: translateY(-1px);
+  transition: all 0.1s ease;
+}
+
+/* Ícone animado no botão */
+.btn-organic i {
+  transition: transform 0.3s ease;
+}
+
+.btn-organic:hover i {
+  transform: translateX(5px);
+}
+
+/* Mensagens de feedback melhoradas */
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-base);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.message-success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #065f46;
+}
+
+.message-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #991b1b;
+}
+
+.message i {
+  font-size: var(--font-size-lg);
+  margin-top: 2px;
+}
+
+.message-success i {
+  color: var(--accent-green);
+}
+
+.message-error i {
+  color: #ef4444;
 }
 
 .footer {
