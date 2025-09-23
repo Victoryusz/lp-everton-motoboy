@@ -755,12 +755,23 @@ body {
 .form-group select:focus + label,
 .form-group select:not([value=""]) + label,
 .form-group textarea:focus + label,
-.form-group textarea:not(:placeholder-shown) + label {
-  top: 0.5rem;
-  font-size: var(--font-size-sm);
+.form-group textarea:not(:placeholder-shown) + label,
+/* Suporte ao autofill do navegador */
+input:-webkit-autofill + label {
+  top: -0.6rem; /* sobe acima da borda, evitando sobreposição */
+  left: 0.75rem;
+  font-size: 0.75rem; /* menor para caber fora do campo */
   color: var(--primary-blue);
   font-weight: 600;
-  transform: scale(0.9);
+  transform: none;
+  background: #fff; /* cria recorte na borda (efeito notch) */
+  padding: 0 0.35rem;
+}
+
+/* Dar espaço superior extra para o texto quando houver label flutuante */
+.form-group input,
+.form-group textarea {
+  padding-top: 1.6rem;
 }
 
 /* Efeito de validação visual */

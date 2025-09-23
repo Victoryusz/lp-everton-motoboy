@@ -375,7 +375,7 @@
   .form-group input,
   .form-group select,
   .form-group textarea {
-    padding: 1rem 0.75rem 0.5rem;
+    padding: 1.4rem 0.75rem 0.5rem; /* Mais padding-top para evitar sobreposição */
     border-radius: 12px;
     font-size: 16px; /* Evita zoom no iOS */
   }
@@ -391,9 +391,16 @@
   .form-group select:focus + label,
   .form-group select:not([value=""]) + label,
   .form-group textarea:focus + label,
-  .form-group textarea:not(:placeholder-shown) + label {
-    top: 0.375rem;
-    font-size: var(--font-size-xs);
+  .form-group textarea:not(:placeholder-shown) + label,
+  /* Suporte ao autofill no mobile */
+  input:-webkit-autofill + label {
+    top: -0.4rem; /* Sobe acima da borda no mobile */
+    left: 0.6rem;
+    font-size: 0.7rem; /* Menor para caber fora do campo */
+    color: var(--primary-blue);
+    font-weight: 600;
+    background: #fff; /* Cria recorte na borda */
+    padding: 0 0.3rem;
   }
 
   .form-group textarea {
